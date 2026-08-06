@@ -86,13 +86,15 @@
         <div class="task-card" id="pickSlotPanel">
           <h6 class="fw-bold text-secondary text-uppercase mb-3" style="font-size:0.75rem; letter-spacing:0.6px;">📋 Progres Bin Pick Slot</h6>
           <div class="row text-center mb-4">
-            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Target</small><div class="task-num text-primary" style="font-size:1.05rem;" id="psTotal">-</div></div>
+            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Sisa Target</small><div class="task-num text-primary" style="font-size:1.05rem;" id="psTotal">-</div></div>
             <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Selesai</small><div class="task-num text-success" style="font-size:1.05rem;" id="psDone">-</div></div>
             <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Sesuai%</small><div class="task-num text-danger" style="font-size:1.05rem;" id="psPctMatch">-%</div></div>
-            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Kosong</small><div class="task-num text-warning text-dark" style="font-size:1.05rem;" id="psKosong">-</div></div>
-            <div class="col px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Blm Val</small><div class="task-num text-secondary" style="font-size:1.05rem;" id="psPctBelum">-%</div></div>
+            <!-- UPDATE PERSENTASE KOSONG -->
+            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Kosong</small><div class="task-num text-warning text-dark" style="font-size:1.05rem;" id="psKosong">-</div><div style="font-size:0.65rem; font-weight:700; color:#d97706;" id="psPctKosong">-%</div></div>
+            <!-- UPDATE KATA BELUM VALIDASI -->
+            <div class="col px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Belum Validasi</small><div class="task-num text-secondary" style="font-size:1.05rem;" id="psPctBelum">-%</div></div>
           </div>
-
+          <!-- (Sisa tabel Belum, Not Match, Kosong biarkan sama) -->
           <div class="mt-2 text-start">
              <div class="d-flex align-items-center mb-2"><span style="font-size: 1.1rem; margin-right: 6px;">⚠️</span><h6 class="fw-bold m-0" style="font-size: 0.8rem; color: #b45309; text-transform: uppercase;">Daftar Belum Validasi</h6></div>
              <div class="table-responsive" style="max-height: 220px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
@@ -116,13 +118,15 @@
         <div class="task-card" id="reverseBinPanel">
           <h6 class="fw-bold text-secondary text-uppercase mb-3" style="font-size:0.75rem; letter-spacing:0.6px;">📋 Progres Reverse Bin</h6>
           <div class="row text-center mb-4">
-            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Target</small><div class="task-num text-primary" style="font-size:1.05rem;" id="rbTotal">-</div></div>
+            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Sisa Target</small><div class="task-num text-primary" style="font-size:1.05rem;" id="rbTotal">-</div></div>
             <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Selesai</small><div class="task-num text-success" style="font-size:1.05rem;" id="rbDone">-</div></div>
             <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Sesuai%</small><div class="task-num text-danger" style="font-size:1.05rem;" id="rbPctMatch">-%</div></div>
-            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Kosong</small><div class="task-num text-warning text-dark" style="font-size:1.05rem;" id="rbKosong">-</div></div>
-            <div class="col px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Blm Val</small><div class="task-num text-secondary" style="font-size:1.05rem;" id="rbPctBelum">-%</div></div>
+            <!-- UPDATE PERSENTASE KOSONG -->
+            <div class="col border-end px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Kosong</small><div class="task-num text-warning text-dark" style="font-size:1.05rem;" id="rbKosong">-</div><div style="font-size:0.65rem; font-weight:700; color:#d97706;" id="rbPctKosong">-%</div></div>
+            <!-- UPDATE KATA BELUM VALIDASI -->
+            <div class="col px-1"><small class="text-secondary fw-bold" style="font-size:0.6rem;">Belum Validasi</small><div class="task-num text-secondary" style="font-size:1.05rem;" id="rbPctBelum">-%</div></div>
           </div>
-
+          <!-- (Sisa tabel Belum, Not Match, Kosong biarkan sama) -->
           <div class="mt-2 text-start">
              <div class="d-flex align-items-center mb-2"><span style="font-size: 1.1rem; margin-right: 6px;">⚠️</span><h6 class="fw-bold m-0" style="font-size: 0.8rem; color: #b45309; text-transform: uppercase;">Daftar Belum Validasi</h6></div>
              <div class="table-responsive" style="max-height: 220px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 10px;">
@@ -227,9 +231,12 @@
       function updateTaskBoard(data) {
         if (!data.pickSlot) return; 
 
-        document.getElementById('psTotal').innerText = data.pickSlot.target; document.getElementById('psDone').innerText = data.pickSlot.match;
-        document.getElementById('psPctMatch').innerText = data.pickSlot.pctMatch + '%'; document.getElementById('psPctBelum').innerText = data.pickSlot.pctBelum + '%';
+        document.getElementById('psTotal').innerText = data.pickSlot.belum; 
+        document.getElementById('psDone').innerText = data.pickSlot.match;
+        document.getElementById('psPctMatch').innerText = data.pickSlot.pctMatch + '%'; 
+        document.getElementById('psPctBelum').innerText = data.pickSlot.pctBelum + '%';
         document.getElementById('psKosong').innerText = data.pickSlot.kosong; 
+        document.getElementById('psPctKosong').innerText = data.pickSlot.pctKosong + '%'; // TAMBAHAN %
 
         let psBelumHTML = ''; data.pickSlot.listBelum.forEach(x => { psBelumHTML += `<tr><td style="white-space: nowrap; padding-left: 12px;"><b style="color: #334155;">${x.bin}</b></td><td>${x.product}</td><td class="text-muted">${x.mid}</td></tr>`; });
         document.getElementById('psTableBelum').innerHTML = psBelumHTML || '<tr><td colspan="3" class="text-center text-success fw-bold py-3">🎉 Semua sudah divalidasi</td></tr>';
@@ -240,9 +247,12 @@
         let psKosongHTML = ''; data.pickSlot.listEmpty.forEach(x => { psKosongHTML += `<tr><td style="white-space: nowrap; padding-left: 12px;"><b style="color: #334155;">${x.bin}</b></td><td>${x.product}</td><td class="text-warning text-dark fw-bold">${x.mid}</td></tr>`; });
         document.getElementById('psTableKosong').innerHTML = psKosongHTML || '<tr><td colspan="3" class="text-center text-muted fw-bold py-3">🎉 Tidak ada Item Kosong</td></tr>';
 
-        document.getElementById('rbTotal').innerText = data.reverseBin.target; document.getElementById('rbDone').innerText = data.reverseBin.match;
-        document.getElementById('rbPctMatch').innerText = data.reverseBin.pctMatch + '%'; document.getElementById('rbPctBelum').innerText = data.reverseBin.pctBelum + '%';
+        document.getElementById('rbTotal').innerText = data.reverseBin.belum; 
+        document.getElementById('rbDone').innerText = data.reverseBin.match;
+        document.getElementById('rbPctMatch').innerText = data.reverseBin.pctMatch + '%'; 
+        document.getElementById('rbPctBelum').innerText = data.reverseBin.pctBelum + '%';
         document.getElementById('rbKosong').innerText = data.reverseBin.kosong; 
+        document.getElementById('rbPctKosong').innerText = data.reverseBin.pctKosong + '%'; // TAMBAHAN %
 
         let rbBelumHTML = ''; data.reverseBin.listBelum.forEach(x => { rbBelumHTML += `<tr><td style="white-space: nowrap; padding-left: 12px;"><b style="color: #334155;">${x.bin}</b></td><td>${x.product}</td><td class="text-muted">${x.mid}</td></tr>`; });
         document.getElementById('rbTableBelum').innerHTML = rbBelumHTML || '<tr><td colspan="3" class="text-center text-success fw-bold py-3">🎉 Semua sudah divalidasi</td></tr>';
@@ -252,11 +262,6 @@
 
         let rbKosongHTML = ''; data.reverseBin.listEmpty.forEach(x => { rbKosongHTML += `<tr><td style="white-space: nowrap; padding-left: 12px;"><b style="color: #334155;">${x.bin}</b></td><td>${x.product}</td><td class="text-warning text-dark fw-bold">${x.mid}</td></tr>`; });
         document.getElementById('rbTableKosong').innerHTML = rbKosongHTML || '<tr><td colspan="3" class="text-center text-muted fw-bold py-3">🎉 Tidak ada Item Kosong</td></tr>';
-
-        if (document.getElementById('lblTotalBinMat')) {
-          document.getElementById('lblTotalBinMat').innerText = data.totalBinMat + " baris"; document.getElementById('lblBinMat0102InStock').innerText = data.binMat0102InStock + " items";
-          document.getElementById('lblBinMat0102NotInStock').innerText = data.binMat0102NotInStock + " items"; document.getElementById('lblStock0102NotInBinMat').innerText = data.stock0102NotInBinMat + " items";
-        }
       }
 
       // ==========================================================
